@@ -19,9 +19,14 @@ class DepartController extends Controller
     }
 
     public function save(Request $request)
-    {
-        // dd($request->server('HTTP_USER_AGENT'));
-        dd($request);
+    { 
+        $validated = $request->validate([
+            'name'   => 'required|max:255',
+            'type'   => 'required',
+            'status' => 'required',
+
+            
+        ]); 
     }
 
     public function store()
