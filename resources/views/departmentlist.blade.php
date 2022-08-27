@@ -25,45 +25,77 @@
     <p> {{ $data['where']->name }} </p>
     @endif
 
+    @if(session("success"))
+    <div style="padding: 1rem; background: #4caf50; margin-bottom: 1rem;">
+        {{ session("success")['msg1'] }}
+    </div>
+    @endif
+
     <form action="{{ route('save') }}" method="POST">
         @csrf
-        <div style="margin-bottom: 10px;"> 
+
+        <div style="margin-bottom: 10px;">
             <label for="name"> Name :</label>
-            <input type="text" name="name" id="name">
+            <input type="text" name="name" id="name" value="{{ old('name') }}">
+            @error('name')
+            <div style="margin: 1rem;padding: 1rem;background: #f44336;">{{ $message }}</div>
+            @enderror
         </div>
-        <div style="margin-bottom: 10px;"> 
+        <div style="margin-bottom: 10px;">
             <label for="type"> Type :</label>
-            <input type="text" name="type" id="type">
-        </div> 
-        <div style="margin-bottom: 10px;"> 
+            <input type="text" name="type" id="type" value="{{ old('type') }}">
+            @error('type')
+            <div style="margin: 1rem;padding: 1rem;background: #f44336;">{{ $message }}</div>
+            @enderror
+        </div>
+        <div style="margin-bottom: 10px;">
             <label for="status"> Status :</label>
-            <input type="text" name="status" id="status">
-        </div> 
+            <input type="text" name="status" id="status" value="{{ old('status') }}">
+            @error('status')
+            <div style="margin: 1rem;padding: 1rem;background: #f44336;">{{ $message }}</div>
+            @enderror
+        </div>
 
-        <div style="margin-bottom: 10px;"> 
+        <div style="margin-bottom: 10px;">
             <label for="tel"> Tel :</label>
-            <input type="text" name="tel" id="tel">
-        </div> 
-        <div style="margin-bottom: 10px;"> 
+            <input type="text" name="tel" id="tel" value="{{ old('tel') }}">
+            @error('tel')
+            <div style="margin: 1rem;padding: 1rem;background: #f44336;">{{ $message }}</div>
+            @enderror
+        </div>
+        <div style="margin-bottom: 10px;">
             <label for="email"> Email :</label>
-            <input type="email" name="email" id="email">
-        </div>  
+            <input type="text" name="email" id="email" value="{{ old('email') }}">
+            @error('email')
+            <div style="margin: 1rem;padding: 1rem;background: #f44336;">{{ $message }}</div>
+            @enderror
+        </div>
 
-        <div style="margin-bottom: 10px;"> 
+        <div style="margin-bottom: 10px;">
             <label for="username"> Username :</label>
-            <input type="text" name="username" id="username">
-        </div> 
-        <div style="margin-bottom: 10px;"> 
+            <input type="text" name="username" id="username" value="{{ old('username') }}">
+            @error('username')
+            <div style="margin: 1rem;padding: 1rem;background: #f44336;">{{ $message }}</div>
+            @enderror
+        </div>
+        <div style="margin-bottom: 10px;">
             <label for="password"> Password :</label>
             <input type="password" name="password" id="password">
-        </div> 
-        <div style="margin-bottom: 10px;"> 
+            @error('password')
+            <div style="margin: 1rem;padding: 1rem;background: #f44336;">{{ $message }}</div>
+            @enderror
+        </div>
+        <div style="margin-bottom: 10px;">
             <label for="passwordConf"> Password Conf :</label>
-            <input type="password" name="passwordConf" id="passwordConf">
-        </div>   
+            <input type="password" name="password_confirmation" id="password_confirmation">
+            @error('passwordConf')
+            <div style="margin: 1rem;padding: 1rem;background: #f44336;">{{ $message }}</div>
+            @enderror
+        </div>
 
         <button type="submit"> SAVE </button>
     </form>
+
 
 
     <!-- $depaartment->firstItems()+$loop->index -->

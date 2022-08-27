@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\department; 
+use App\Models\department;
 use Illuminate\Support\Facades\DB;
 
 class DepartController extends Controller
@@ -19,14 +19,52 @@ class DepartController extends Controller
     }
 
     public function save(Request $request)
-    { 
-        $validated = $request->validate([
-            'name'   => 'required|max:255',
-            'type'   => 'required',
-            'status' => 'required',
+    {
+        $request->validate(
+            [
+                'name'   => 'required|max:255',
+                'type'   => 'required',
+                'status' => 'required',
+                'tel' => 'required|digits:10',
 
-            
-        ]); 
+                'email' => 'required|email',
+                'username' => 'required|string|max:100',
+                'password' => 'required|string|min:6|confirmed',
+                'password_confirmation' => 'required'
+            ],
+            [
+                'name.required' => "โปรดระบุข้อมูล",
+                'name.max' => "กรุณากรอกอักษรไม่เกิน 255 อักษร",
+
+                'type.required' => "โปรดระบุข้อมูล",
+                'status.required' => "โปรดระบุข้อมูล",
+
+                'tel.required' => "โปรดระบุข้อมูล",
+                'tel.digits' => "กรุณากรอกเบอร์โทรให้ถูกต้อง",
+
+                'email.required' => "โปรดระบุข้อมูล",
+                'email.email' => "กรุณากรอก Email ให้ถูกต้อง",
+
+                'username.required' => "โปรดระบุข้อมูล",
+                'username.string' => "โปรดระบุข้อมูล ให้ถูกต้อง",
+                'username.max' => "กรุณากรอกอักษรไม่เกิน 100 อักษร",
+
+                'password.required' => "โปรดระบุข้อมูล",
+                'password.string' => "โปรดระบุข้อมูล ให้ถูกต้อง",
+                'password.min' => "กรุณากรอกอักษรอย่าง 6 ตัวอักษร", 
+                'password.confirmed' => "confirmed  ให้ถูกต้อง",
+
+                'password.password_confirmation' => "โปรดระบุข้อมูล",
+            ]
+        ); 
+
+        $data = array(
+            "msg1" => "xxxx1",
+            "msg2" => "xxxx2",
+            "msg3" => "xxxx3",
+        );
+        return redirect()->route('department.list')->with('success', compact('data')); 
+        // return back();  
     }
 
     public function store()
@@ -83,7 +121,7 @@ class DepartController extends Controller
         // $data = DB::select('select `departments`.`id` as `id`, `departments`.`name` as `departmentsName`, `type`.`name` as `TypeName` 
         // from `departments` left join `type` on `departments`.`type` = `type`.`id` where `status` = "Y"');
         // dd($data);
-         
+
 
         // $data = DB::table('departments') 
         // ->where('id', 2) 
