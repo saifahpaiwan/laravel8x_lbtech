@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\Auth;
 use Hash;
 use Illuminate\Support\Arr;
 use session;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 
 class LoginController extends Controller
 {
@@ -47,5 +49,28 @@ class LoginController extends Controller
         Session::flush();
         Auth::logout();
         return redirect()->route('login');
+    }
+
+    // ====================================================== //
+    
+    public function showForgetPasswordForm()
+    { 
+        return view('auth.forget-password');
+    }
+
+    public function submitForgetPasswordForm(Request $request)
+    {
+        $request->validate([
+            'email' => 'required|email|exists:users',
+        ]);
+
+        $token = Str::random(64);
+
+        DB::table('password_resets')->insert([
+            'email' => $request->email,
+            'token' => $token,
+            'created_at' => date('Y-m-d H:i:s')
+        ]); 
+        return back()->with('success', 'We have emailed you a password reset link !');
     }
 }

@@ -19,23 +19,25 @@
                 </div>
                 @endif
 
-                <form action="{{ route('loginCheck') }}" method="POST">
+                <form action="{{ route('reset.password.post') }}" method="POST">
                     @csrf
+                    <input type="hidden" name="token" value="{{ $data['token'] }}">
                     <div class="row">
                         <div class="col-md-12 pb-2">
-                            <h1> Login </h1>
+                            <h1> Reset Password </h1>
                         </div>
                         <div class="col-md-12 pb-2">
                             <input type="text" class="form-control" id="email" name="email">
                         </div>
                         <div class="col-md-12 pb-2">
-                            <input type="text" class="form-control" id="password" name="password">
-                        </div>
-                        <div class="col-md-12 pb-2">  
-                            <a href="{{ route('forgotpassword') }}"></a>
+                            <input type="password" class="form-control" id="password" name="password">
                         </div>
                         <div class="col-md-12 pb-2">
-                            <button type="submit"> Login </button>
+                            <input type="password" class="form-control" id="password_confirmation" name="password_confirmation">
+                        </div>
+ 
+                        <div class="col-md-12 pb-2">
+                            <button type="submit"> sand email </button>
                         </div>
                     </div>
                 </form>

@@ -19,23 +19,18 @@
                 </div>
                 @endif
 
-                <form action="{{ route('loginCheck') }}" method="POST">
+                <form action="{{ route('forget.password.post') }}" method="POST">
                     @csrf
                     <div class="row">
                         <div class="col-md-12 pb-2">
-                            <h1> Login </h1>
+                            <h1> Forgotpassword </h1>
                         </div>
                         <div class="col-md-12 pb-2">
                             <input type="text" class="form-control" id="email" name="email">
                         </div>
+                      
                         <div class="col-md-12 pb-2">
-                            <input type="text" class="form-control" id="password" name="password">
-                        </div>
-                        <div class="col-md-12 pb-2">  
-                            <a href="{{ route('forgotpassword') }}"></a>
-                        </div>
-                        <div class="col-md-12 pb-2">
-                            <button type="submit"> Login </button>
+                            <button type="submit"> sand email </button>
                         </div>
                     </div>
                 </form>
