@@ -19,7 +19,7 @@ Route::post('/login-check', [LoginController::class, 'loginCheck'])->name('login
 Route::get('/home', [LoginController::class, 'home'])->name('home'); 
 Route::get('/logout', [LoginController::class, 'logout'])->name('logout'); 
 
-Route::get('/forget-password', [AuthenticationController::class, 'showForgetPasswordForm'])->name('forget.password.get');
-Route::post('forget-password', [AuthenticationController::class, 'submitForgetPasswordForm'])->name('forget.password.post');
-Route::get('reset-password/{token}', [AuthenticationController::class, 'showResetPasswordForm'])->name('reset.password.get');
-Route::post('reset-password', [AuthenticationController::class, 'submitResetPasswordForm'])->name('reset.password.post');
+Route::get('/forget-password', [LoginController::class, 'showForgetPasswordForm'])->name('forget.password.get');
+Route::post('forget-password', [LoginController::class, 'submitForgetPasswordForm'])->name('forget.password.post');
+Route::get('reset-password/{token}', [LoginController::class, 'showResetPasswordForm'])->name('reset.password.get');
+Route::post('reset-password', [LoginController::class, 'submitResetPasswordForm'])->name('reset.password.post');
